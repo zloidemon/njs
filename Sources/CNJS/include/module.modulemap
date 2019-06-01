@@ -1,0 +1,5 @@
+module CNJS [system] {
+    header "header.h"
+    link "pcre"
+    export *
+}
