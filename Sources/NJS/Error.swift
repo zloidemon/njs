@@ -4,7 +4,7 @@ struct Error: Swift.Error {
     let message: String
     let source: String
 
-    init(message: String, source: String) {
+    init(message: String, source: String = "") {
         self.message = message
         self.source = source
     }
@@ -18,5 +18,11 @@ struct Error: Swift.Error {
 extension Error: CustomStringConvertible {
     var description: String {
         return message
+    }
+}
+
+extension Error: Equatable {
+    static func ==(lhs: Error, rhs: Error) -> Bool {
+        return lhs.message == rhs.message
     }
 }

@@ -12,7 +12,7 @@ let package = Package(
              .branch("dev")),
         .package(
             url: "https://github.com/swiftstack/test.git",
-            .branch("dev"))
+            .branch("fiber"))
     ],
     targets: [
         .target(
