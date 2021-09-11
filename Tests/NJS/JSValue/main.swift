@@ -1,54 +1,46 @@
 import Test
 @testable import NJS
 
-final class JSValueTests: TestCase {
-    func testIsUndefined() {
-        do {
-            let context = try JSContext()
+test.case("IsUndefined") {
+    let context = try JSContext()
 
-            let result = try context.evaluate("undefined")
-            assertTrue(result.isUndefined)
-            assertFalse(result.isNull)
-            assertFalse(result.isBool)
-            assertFalse(result.isNumber)
-            assertFalse(result.isString)
-            assertEqual(try result.toString(), "undefined")
-        } catch {
-            fail(String(describing: error))
-        }
-    }
+    let result = try context.evaluate("undefined")
+    expect(result.isUndefined == true)
+    expect(result.isNull == false)
+    expect(result.isBool == false)
+    expect(result.isNumber == false)
+    expect(result.isString == false)
+    expect(try result.toString() == "undefined")
+}
 
-    func testIsNull() {
-        do {
-            let context = try JSContext()
-            let result = try context.evaluate("null")
-            assertFalse(result.isUndefined)
-            assertTrue(result.isNull)
-            assertFalse(result.isBool)
-            assertFalse(result.isNumber)
-            assertFalse(result.isString)
-            assertEqual(try result.toString(), "null")
-        } catch {
-            fail(String(describing: error))
-        }
-    }
+test.case("IsNull") {
+    let context = try JSContext()
+    let result = try context.evaluate("null")
 
-    func testIsBool() {
-        do {
-            let context = try JSContext()
-            let result = try context.evaluate("true")
-            assertFalse(result.isUndefined)
-            assertFalse(result.isNull)
-            assertTrue(result.isBool)
-            assertFalse(result.isNumber)
-            assertFalse(result.isString)
-            assertEqual(try result.toString(), "true")
-            // assertEqual(result.toBool(), true)
-        } catch {
-            fail(String(describing: error))
-        }
-    }
+    expect(result.isUndefined == false)
+    expect(result.isNull == true)
+    expect(result.isBool == false)
+    expect(result.isNumber == false)
+    expect(result.isString == false)
+    expect(try result.toString() == "null")
+}
 
+test.case("IsBool") {
+    let context = try JSContext()
+    let result = try context.evaluate("true")
+
+    expect(result.isUndefined == false)
+    expect(result.isNull == false)
+    expect(result.isBool == true)
+    expect(result.isNumber == false)
+    expect(result.isString == false)
+    expect(try result.toString() == "true")
+    // expect(result.toBool() == true)
+}
+
+test.run()
+
+/*
     func testIsNumber() {
         do {
             let context = try JSContext()
@@ -115,3 +107,4 @@ final class JSValueTests: TestCase {
          }
      }
 }
+*/

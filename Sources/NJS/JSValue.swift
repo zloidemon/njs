@@ -14,8 +14,9 @@ public class JSValue: JavaScript.JSValue {
         get {
             return key.withCString { keyPointer in
                 let start = UnsafeMutablePointer<UInt8>(keyPointer)
-                var s = nxt_str_t(length: key.count, start: start)
-                guard let p = njs_vm_object_prop(vm, pointer, &s) else {
+                var s = njs_str_t(length: key.count, start: start)
+                var op = njs_opaque_value_t()
+                guard let p = njs_vm_object_prop(vm, pointer, &s, &op) else {
                     return nil
                 }
                 return JSValue(p, in: vm)
@@ -24,9 +25,9 @@ public class JSValue: JavaScript.JSValue {
     }
 
     public func toString() throws -> String {
-        var s = nxt_str_t()
-        guard njs_vm_value_to_ext_string(vm, &s, pointer, 0) == NXT_OK else {
-            throw Error(from: "njs_vm_value_to_ext_string", in: vm)
+        var s = njs_str_t()
+        guard njs_vm_value_to_string(vm, &s, pointer) == NJS_OK else {
+            throw Error(from: "ngx_js_string", in: vm)
         }
         return String(s)
     }

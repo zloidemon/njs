@@ -1,6 +1,7 @@
 import Test
 @testable import NJS
 
+/*
 final class JavaScriptTests: TestCase {
     func testEvaluate() {
         scope {
@@ -28,3 +29,4 @@ final class JavaScriptTests: TestCase {
         }
     }
 }
+*/
