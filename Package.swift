@@ -4,7 +4,9 @@ import PackageDescription
 let package = Package(
     name: "NJS",
     products: [
-        .library(name: "NJS", targets: ["NJS"]),
+        .library(
+            name: "NJS",
+            targets: ["NJS"]),
     ],
     dependencies: [
         .package(name: "JavaScript"),
@@ -16,12 +18,28 @@ let package = Package(
             dependencies: []),
         .target(
             name: "NJS",
-            dependencies: ["CNJS", "JavaScript"]),
-        .testTarget(
-            name: "NJSTests",
-            dependencies: ["Test", "NJS"]),
+            dependencies: ["CNJS", "JavaScript"])
     ]
 )
+
+// MARK: - tests
+
+testTarget("NJS") { test in
+    test("JavaScript")
+    test("JSValue")
+}
+
+func testTarget(_ target: String, task: ((String) -> Void) -> Void) {
+    task { test in addTest(target: target, name: test) }
+}
+
+func addTest(target: String, name: String) {
+    package.targets.append(
+        .executableTarget(
+            name: "Tests/\(target)/\(name)",
+            dependencies: ["Test", "NJS"],
+            path: "Tests/\(target)/\(name)"))
+}
 
 // MARK: - custom package source
 

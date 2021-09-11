@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+swift build \
+ -Xswiftc -I$NJS/njs \
+ -Xswiftc -I$NJS/nxt \
+ -Xswiftc -I$NJS/build \
+ -Xlinker $NJS/build/libnjs.a
+
+export DYLD_LIBRARY_PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/lib/swift/macosx
+
+.build/debug/Tests/NJS/JavaScript
+.build/debug/Tests/NJS/JSValue
