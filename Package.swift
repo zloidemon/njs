@@ -7,12 +7,12 @@ let package = Package(
         .library(name: "NJS", targets: ["NJS"]),
     ],
     dependencies: [
-         .package(
-             url: "https://github.com/tris-code/javascript.git",
-             .branch("master")),
         .package(
-            url: "https://github.com/tris-code/test.git",
-            .branch("master"))
+             url: "https://github.com/swiftstack/javascript.git",
+             .branch("dev")),
+        .package(
+            url: "https://github.com/swiftstack/test.git",
+            .branch("dev"))
     ],
     targets: [
         .target(
