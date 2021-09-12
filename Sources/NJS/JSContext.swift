@@ -7,7 +7,6 @@ public class JSContext {
 
     public convenience init() throws {
         var options = njs_vm_opt_t()
-        options.accumulative = 1
         options.backtrace = 1
         try self.init(options: options)
     }
@@ -37,7 +36,7 @@ public class JSContext {
         try script.withCString { start in
             var start = UnsafeMutablePointer<UInt8>(start)
             let end = start?.advanced(by: script.count)
-            guard njs_vm_compile(vm, &start, end) == NXT_OK else {
+            guard njs_vm_compile(vm, &start, end) == NJS_OK else {
                 throw Error(from: "njs_vm_compile", in: vm)
             }
         }
@@ -45,7 +44,7 @@ public class JSContext {
 
     // 2.
     private func start() throws {
-        guard njs_vm_start(vm) == NXT_OK else {
+        guard njs_vm_start(vm) == NJS_OK else {
             throw Error(from: "njs_vm_start", in: vm)
         }
     }
