@@ -10,8 +10,8 @@ test.case("ReferenceError exception") {
     let context = try JSContext()
 
     let message = """
-        ReferenceError: \"x\" is not defined in 1
-            at main (native)
+        ReferenceError: "x" is not defined
+            at main (:1)
 
         """
 
