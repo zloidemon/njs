@@ -7,6 +7,7 @@ public class JSContext {
 
     public convenience init() throws {
         var options = njs_vm_opt_t()
+        options.`init` = 1
         options.backtrace = 1
         try self.init(options: options)
     }
