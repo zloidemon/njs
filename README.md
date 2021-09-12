@@ -34,20 +34,17 @@ make -j8
 export NJS=/path/to/cloned/njs
 
 swift build \
- -Xswiftc -I$NJS/njs \
- -Xswiftc -I$NJS/nxt \
+ -Xswiftc -I$NJS/src \
  -Xswiftc -I$NJS/build \
  -Xlinker $NJS/build/libnjs.a
 
 swift test \
- -Xswiftc -I$NJS/njs \
- -Xswiftc -I$NJS/nxt \
+ -Xswiftc -I$NJS/src \
  -Xswiftc -I$NJS/build \
  -Xlinker $NJS/build/libnjs.a
 
 swift package \
- -Xswiftc -I$NJS/njs \
- -Xswiftc -I$NJS/nxt \
+ -Xswiftc -I$NJS/src \
  -Xswiftc -I$NJS/build \
  -Xlinker $NJS/build/libnjs.a \
  generate-xcodeproj
