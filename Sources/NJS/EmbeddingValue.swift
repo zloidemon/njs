@@ -27,7 +27,7 @@ public class EmbeddedValue: EmbeddedLanguage.EmbeddedValueProtocol {
     public func toString() throws -> String {
         var s = njs_str_t()
         guard njs_vm_value_to_string(vm, &s, pointer) == NJS_OK else {
-            throw Error(from: "njs_vm_value_to_string", in: vm)
+            throw EmbeddedError(from: "njs_vm_value_to_string", in: vm)
         }
         return String(s)
     }

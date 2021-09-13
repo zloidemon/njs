@@ -15,7 +15,7 @@ test.case("ReferenceError exception") {
 
         """
 
-    expect(throws: Error(message: message)) {
+    expect(throws: EmbeddedError(message: message)) {
         try context.evaluate("x()")
     }
 }
@@ -24,7 +24,7 @@ test.case("SyntaxError exception") {
     let context = try EmbeddedContext()
 
     let message = "SyntaxError: Unexpected end of input in 1"
-    expect(throws: Error(message: message)) {
+    expect(throws: EmbeddedError(message: message)) {
         try context.evaluate("{")
     }
 }

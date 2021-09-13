@@ -1,6 +1,6 @@
 import CNJS
 
-struct Error: Swift.Error {
+struct EmbeddedError: Swift.Error {
     let message: String
     let source: String
 
@@ -15,14 +15,14 @@ struct Error: Swift.Error {
     }
 }
 
-extension Error: CustomStringConvertible {
+extension EmbeddedError: CustomStringConvertible {
     var description: String {
         return message
     }
 }
 
-extension Error: Equatable {
-    static func ==(lhs: Error, rhs: Error) -> Bool {
+extension EmbeddedError: Equatable {
+    static func ==(lhs: EmbeddedError, rhs: EmbeddedError) -> Bool {
         return lhs.message == rhs.message
     }
 }

@@ -15,7 +15,7 @@ public class EmbeddedContext {
     public init(options: njs_vm_opt_t) throws {
         var options = options
         guard let vm = njs_vm_create(&options) else {
-            throw Error(
+            throw EmbeddedError(
                 message: "njs_vm_create() failed",
                 source: "njs_vm_create")
         }
@@ -38,7 +38,7 @@ public class EmbeddedContext {
             var start = UnsafeMutablePointer<UInt8>(start)
             let end = start?.advanced(by: script.count)
             guard njs_vm_compile(vm, &start, end) == NJS_OK else {
-                throw Error(from: "njs_vm_compile", in: vm)
+                throw EmbeddedError(from: "njs_vm_compile", in: vm)
             }
         }
     }
@@ -46,7 +46,7 @@ public class EmbeddedContext {
     // 2.
     private func start() throws {
         guard njs_vm_start(vm) == NJS_OK else {
-            throw Error(from: "njs_vm_start", in: vm)
+            throw EmbeddedError(from: "njs_vm_start", in: vm)
         }
     }
 
@@ -54,14 +54,14 @@ public class EmbeddedContext {
         try compile(script)
         try start()
         guard let pointer = njs_vm_retval(vm) else {
-            throw Error(from: "njs_vm_retval", in: vm)
+            throw EmbeddedError(from: "njs_vm_retval", in: vm)
         }
         return EmbeddedValue(pointer, in: vm)
     }
 
     public func clone() throws -> EmbeddedContext {
         guard let pointer = njs_vm_clone(vm, nil) else {
-            throw Error(from: "njs_vm_clone", in: vm)
+            throw EmbeddedError(from: "njs_vm_clone", in: vm)
         }
         return EmbeddedContext(vm: pointer, options: options)
     }
