@@ -2,7 +2,7 @@ import Test
 @testable import NJS
 
 test.case("isUndefined") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
 
     let result = try context.evaluate("undefined")
     expect(result.isUndefined == true)
@@ -14,7 +14,7 @@ test.case("isUndefined") {
 }
 
 test.case("isNull") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("null")
     expect(result.isUndefined == false)
     expect(result.isNull == true)
@@ -25,7 +25,7 @@ test.case("isNull") {
 }
 
 test.case("isBool") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("true")
     expect(result.isUndefined == false)
     expect(result.isNull == false)
@@ -37,7 +37,7 @@ test.case("isBool") {
 }
 
 test.case("isNumber") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("3.14")
     expect(result.isUndefined == false)
     expect(result.isNull == false)
@@ -49,7 +49,7 @@ test.case("isNumber") {
 }
 
 test.case("isString") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("'success'")
     expect(result.isUndefined == false)
     expect(result.isNull == false)
@@ -60,19 +60,19 @@ test.case("isString") {
 }
 
 test.case("toInt") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("40 + 2")
     expect(try result.toInt() == 42)
 }
 
 test.case("toString") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("40 + 2")
     expect(try result.toString() == "42")
 }
 
 test.case("property") {
-    let context = try EmbeddingContext()
+    let context = try EmbeddedContext()
     let result = try context.evaluate("""
     (function(){
         return { property: 'test' }

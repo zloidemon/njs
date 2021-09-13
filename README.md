@@ -5,7 +5,7 @@
 ## Usage
 
 ```swift
-let context = try EmbeddingContext()
+let context = try EmbeddedContext()
 
 let result = try context.evaluate("40 + 2")
 assertEqual(try result.toString(), "42")

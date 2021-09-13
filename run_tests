@@ -9,5 +9,5 @@ swift build \
 
 export DYLD_LIBRARY_PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/lib/swift/macosx
 
-.build/debug/Tests/NJS/EmbeddingLanguage
-.build/debug/Tests/NJS/EmbeddingValue
+.build/debug/Tests/NJS/EmbeddedLanguage
+.build/debug/Tests/NJS/EmbeddedValue

@@ -1,7 +1,7 @@
 import CNJS
-import EmbeddingLanguage
+import EmbeddedLanguage
 
-public class EmbeddingValue: EmbeddingLanguage.EmbeddingValueProtocol {
+public class EmbeddedValue: EmbeddedLanguage.EmbeddedValueProtocol {
     let pointer: OpaquePointer
     let vm: OpaquePointer
 
@@ -10,7 +10,7 @@ public class EmbeddingValue: EmbeddingLanguage.EmbeddingValueProtocol {
         self.vm = vm
     }
 
-    public subscript(_ key: String) -> EmbeddingValue? {
+    public subscript(_ key: String) -> EmbeddedValue? {
         get {
             return key.withCString { keyPointer in
                 let start = UnsafeMutablePointer<UInt8>(keyPointer)
@@ -19,7 +19,7 @@ public class EmbeddingValue: EmbeddingLanguage.EmbeddingValueProtocol {
                 guard let p = njs_vm_object_prop(vm, pointer, &s, &op) else {
                     return nil
                 }
-                return EmbeddingValue(p, in: vm)
+                return EmbeddedValue(p, in: vm)
             }
         }
     }

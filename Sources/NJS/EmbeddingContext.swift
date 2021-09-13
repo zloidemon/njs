@@ -1,7 +1,7 @@
 import CNJS
-import EmbeddingLanguage
+import EmbeddedLanguage
 
-public class EmbeddingContext {
+public class EmbeddedContext {
     let vm: OpaquePointer
     let options: njs_vm_opt_t
 
@@ -50,20 +50,20 @@ public class EmbeddingContext {
         }
     }
 
-    public func evaluate(_ script: String) throws -> EmbeddingValue {
+    public func evaluate(_ script: String) throws -> EmbeddedValue {
         try compile(script)
         try start()
         guard let pointer = njs_vm_retval(vm) else {
             throw Error(from: "njs_vm_retval", in: vm)
         }
-        return EmbeddingValue(pointer, in: vm)
+        return EmbeddedValue(pointer, in: vm)
     }
 
-    public func clone() throws -> EmbeddingContext {
+    public func clone() throws -> EmbeddedContext {
         guard let pointer = njs_vm_clone(vm, nil) else {
             throw Error(from: "njs_vm_clone", in: vm)
         }
-        return EmbeddingContext(vm: pointer, options: options)
+        return EmbeddedContext(vm: pointer, options: options)
     }
 }
 

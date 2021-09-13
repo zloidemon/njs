@@ -9,7 +9,7 @@ let package = Package(
             targets: ["NJS"]),
     ],
     dependencies: [
-        .package(name: "EmbeddingLanguage"),
+        .package(name: "EmbeddedLanguage"),
         .package(name: "Test")
     ],
     targets: [
@@ -18,15 +18,15 @@ let package = Package(
             dependencies: []),
         .target(
             name: "NJS",
-            dependencies: ["CNJS", "EmbeddingLanguage"])
+            dependencies: ["CNJS", "EmbeddedLanguage"])
     ]
 )
 
 // MARK: - tests
 
 testTarget("NJS") { test in
-    test("EmbeddingLanguage")
-    test("EmbeddingValue")
+    test("EmbeddedLanguage")
+    test("EmbeddedValue")
 }
 
 func testTarget(_ target: String, task: ((String) -> Void) -> Void) {
