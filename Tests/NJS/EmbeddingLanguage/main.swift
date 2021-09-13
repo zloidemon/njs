@@ -2,12 +2,12 @@ import Test
 @testable import NJS
 
 test.case("evaluate") {
-    let context = try JSContext()
+    let context = try EmbeddingContext()
     _ = try context.evaluate("40 + 2")
 }
 
 test.case("ReferenceError exception") {
-    let context = try JSContext()
+    let context = try EmbeddingContext()
 
     let message = """
         ReferenceError: "x" is not defined
@@ -21,7 +21,7 @@ test.case("ReferenceError exception") {
 }
 
 test.case("SyntaxError exception") {
-    let context = try JSContext()
+    let context = try EmbeddingContext()
 
     let message = "SyntaxError: Unexpected end of input in 1"
     expect(throws: Error(message: message)) {

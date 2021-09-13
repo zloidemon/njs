@@ -25,8 +25,8 @@ let package = Package(
 // MARK: - tests
 
 testTarget("NJS") { test in
-    test("JavaScript")
-    test("JSValue")
+    test("EmbeddingLanguage")
+    test("EmbeddingValue")
 }
 
 func testTarget(_ target: String, task: ((String) -> Void) -> Void) {
