@@ -1,5 +1,5 @@
 import CNJS
-import JavaScript
+import EmbeddingLanguage
 
 public class JSContext {
     let vm: OpaquePointer

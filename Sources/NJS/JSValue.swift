@@ -1,7 +1,7 @@
 import CNJS
-import JavaScript
+import EmbeddingLanguage
 
-public class JSValue: JavaScript.JSValue {
+public class JSValue: EmbeddingLanguage.EmbeddingValueProtocol {
     let pointer: OpaquePointer
     let vm: OpaquePointer
 

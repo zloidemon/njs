@@ -9,7 +9,7 @@ let package = Package(
             targets: ["NJS"]),
     ],
     dependencies: [
-        .package(name: "JavaScript"),
+        .package(name: "EmbeddingLanguage"),
         .package(name: "Test")
     ],
     targets: [
@@ -18,7 +18,7 @@ let package = Package(
             dependencies: []),
         .target(
             name: "NJS",
-            dependencies: ["CNJS", "JavaScript"])
+            dependencies: ["CNJS", "EmbeddingLanguage"])
     ]
 )
 
