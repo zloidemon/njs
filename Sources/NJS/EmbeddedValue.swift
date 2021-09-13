@@ -1,7 +1,7 @@
 import CNJS
 import EmbeddedLanguage
 
-public class EmbeddedValue: EmbeddedLanguage.EmbeddedValueProtocol {
+public class EmbeddedValue: EmbeddedValueProtocol {
     let pointer: OpaquePointer
     let vm: OpaquePointer
 

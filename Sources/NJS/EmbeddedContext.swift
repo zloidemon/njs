@@ -1,7 +1,7 @@
 import CNJS
 import EmbeddedLanguage
 
-public class EmbeddedContext {
+public class EmbeddedContext: EmbeddedContextProtocol {
     let vm: OpaquePointer
     let options: njs_vm_opt_t
 
@@ -48,6 +48,10 @@ public class EmbeddedContext {
         guard njs_vm_start(vm) == NJS_OK else {
             throw EmbeddedError(from: "njs_vm_start", in: vm)
         }
+    }
+
+    public func evaluate(_ script: String, source: String?) throws -> EmbeddedValue {
+        return try evaluate(script)
     }
 
     public func evaluate(_ script: String) throws -> EmbeddedValue {
